@@ -1,0 +1,9 @@
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\bin\Debug\netstandard2.0\BusinessLayer.deps.json
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\bin\Debug\netstandard2.0\BusinessLayer.dll
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\bin\Debug\netstandard2.0\BusinessLayer.pdb
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.AssemblyInfo.cs
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.dll
+C:\Users\Vivek Kumar\source\repos\CitizenShipApp\BusinessLayer\obj\Debug\netstandard2.0\BusinessLayer.pdb

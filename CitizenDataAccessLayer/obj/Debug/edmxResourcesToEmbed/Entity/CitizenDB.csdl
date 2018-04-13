@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CitizenShipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CitizenShipEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Address_Details" EntityType="CitizenShipModel.Address_Details" />
+    <EntitySet Name="Citizens" EntityType="CitizenShipModel.Citizen" />
+    <AssociationSet Name="FK_Citizens_Address_Details" Association="CitizenShipModel.FK_Citizens_Address_Details">
+      <End Role="Address_Details" EntitySet="Address_Details" />
+      <End Role="Citizen" EntitySet="Citizens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address_Details">
+    <Key>
+      <PropertyRef Name="Address_Details_ID" />
+    </Key>
+    <Property Name="Address_Line1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address_Line2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pin_Code" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="0" />
+    <Property Name="Address_Details_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Citizens" Relationship="CitizenShipModel.FK_Citizens_Address_Details" FromRole="Address_Details" ToRole="Citizen" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Citizen">
+    <Key>
+      <PropertyRef Name="Citizens_ID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Father_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Occupation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Created_Date" Type="DateTime" Precision="0" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+    <Property Name="Citizens_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address_Details_ID" Type="Int32" />
+    <NavigationProperty Name="Address_Details" Relationship="CitizenShipModel.FK_Citizens_Address_Details" FromRole="Citizen" ToRole="Address_Details" />
+  </EntityType>
+  <Association Name="FK_Citizens_Address_Details">
+    <End Type="CitizenShipModel.Address_Details" Role="Address_Details" Multiplicity="0..1" />
+    <End Type="CitizenShipModel.Citizen" Role="Citizen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Details">
+        <PropertyRef Name="Address_Details_ID" />
+      </Principal>
+      <Dependent Role="Citizen">
+        <PropertyRef Name="Address_Details_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

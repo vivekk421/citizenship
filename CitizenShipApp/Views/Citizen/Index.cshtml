@@ -1,0 +1,15 @@
+﻿<div id="myGrid" style="height: 450px"></div>
+<script type="text/javascript">
+    $('#myGrid').w2grid({
+        name: 'myGrid',
+        url: '@Url.Action("GetCitizensdata", "Citizen")',
+        columns: [
+            { field: 'Name', caption: 'Name', size: '30%' },
+            { field: 'Father_Name', caption: 'Father Name', size: '30%' },
+            { field: 'Occupation', caption: 'Occupation', size: '30%' },
+            { field: 'DOB', caption: 'DOB', size: '120px', type: 'date', render: 'dd-mm-yyyy' },
+            //{ field: 'Address', caption: 'Address', size: '40%' },
+        ]
+    });
+    w2ui['myGrid'].load('/Citizen/GetCitizensdata');
+</script>

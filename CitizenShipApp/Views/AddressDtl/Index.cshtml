@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CitizenShipWeb.Models.Address_DetailsModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddAddress")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_Line1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_Line2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pin_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_Details_ID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address_Line1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address_Line2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pin_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address_Details_ID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAddress", new { id = item.Address_Details_ID }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Address_Details_ID }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Address_Details_ID })*@
+            </td>
+        </tr>
+    }
+
+</table>

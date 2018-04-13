@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CitizenShipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address_Details">
+          <Key>
+            <PropertyRef Name="Address_Details_ID" />
+          </Key>
+          <Property Name="Address_Line1" Type="nvarchar(max)" />
+          <Property Name="Address_Line2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pin_Code" Type="int" />
+          <Property Name="Created_Date" Type="date" />
+          <Property Name="Updated_Date" Type="date" />
+          <Property Name="Address_Details_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Citizens">
+          <Key>
+            <PropertyRef Name="Citizens_ID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Father_Name" Type="nvarchar(max)" />
+          <Property Name="Occupation" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Created_Date" Type="date" />
+          <Property Name="Updated_Date" Type="date" />
+          <Property Name="Citizens_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address_Details_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Citizens_Address_Details">
+          <End Role="Address_Details" Type="Self.Address_Details" Multiplicity="0..1" />
+          <End Role="Citizens" Type="Self.Citizens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address_Details">
+              <PropertyRef Name="Address_Details_ID" />
+            </Principal>
+            <Dependent Role="Citizens">
+              <PropertyRef Name="Address_Details_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CitizenShipModelStoreContainer">
+          <EntitySet Name="Address_Details" EntityType="Self.Address_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Citizens" EntityType="Self.Citizens" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Citizens_Address_Details" Association="Self.FK_Citizens_Address_Details">
+            <End Role="Address_Details" EntitySet="Address_Details" />
+            <End Role="Citizens" EntitySet="Citizens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CitizenShipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CitizenShipEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Address_Details" EntityType="CitizenShipModel.Address_Details" />
+          <EntitySet Name="Citizens" EntityType="CitizenShipModel.Citizen" />
+          <AssociationSet Name="FK_Citizens_Address_Details" Association="CitizenShipModel.FK_Citizens_Address_Details">
+            <End Role="Address_Details" EntitySet="Address_Details" />
+            <End Role="Citizen" EntitySet="Citizens" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Address_Details">
+          <Key>
+            <PropertyRef Name="Address_Details_ID" />
+          </Key>
+          <Property Name="Address_Line1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Line2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pin_Code" Type="Int32" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Address_Details_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Citizens" Relationship="CitizenShipModel.FK_Citizens_Address_Details" FromRole="Address_Details" ToRole="Citizen" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Citizen">
+          <Key>
+            <PropertyRef Name="Citizens_ID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Father_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+          <Property Name="Citizens_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address_Details_ID" Type="Int32" />
+          <NavigationProperty Name="Address_Details" Relationship="CitizenShipModel.FK_Citizens_Address_Details" FromRole="Citizen" ToRole="Address_Details" />
+        </EntityType>
+        <Association Name="FK_Citizens_Address_Details">
+          <End Type="CitizenShipModel.Address_Details" Role="Address_Details" Multiplicity="0..1" />
+          <End Type="CitizenShipModel.Citizen" Role="Citizen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address_Details">
+              <PropertyRef Name="Address_Details_ID" />
+            </Principal>
+            <Dependent Role="Citizen">
+              <PropertyRef Name="Address_Details_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CitizenShipModelStoreContainer" CdmEntityContainer="CitizenShipEntities" >
+          <EntitySetMapping Name="Address_Details">
+            <EntityTypeMapping TypeName="CitizenShipModel.Address_Details">
+              <MappingFragment StoreEntitySet="Address_Details">
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="Address_Details_ID" ColumnName="Address_Details_ID" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address_Line2" ColumnName="Address_Line2" />
+                <ScalarProperty Name="Address_Line1" ColumnName="Address_Line1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citizens">
+            <EntityTypeMapping TypeName="CitizenShipModel.Citizen">
+              <MappingFragment StoreEntitySet="Citizens">
+                <ScalarProperty Name="Address_Details_ID" ColumnName="Address_Details_ID" />
+                <ScalarProperty Name="Citizens_ID" ColumnName="Citizens_ID" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Father_Name" ColumnName="Father_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

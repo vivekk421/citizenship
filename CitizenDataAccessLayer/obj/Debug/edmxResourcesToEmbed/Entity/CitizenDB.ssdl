@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CitizenShipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address_Details">
+    <Key>
+      <PropertyRef Name="Address_Details_ID" />
+    </Key>
+    <Property Name="Address_Line1" Type="nvarchar(max)" />
+    <Property Name="Address_Line2" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pin_Code" Type="int" />
+    <Property Name="Created_Date" Type="date" />
+    <Property Name="Updated_Date" Type="date" />
+    <Property Name="Address_Details_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Citizens">
+    <Key>
+      <PropertyRef Name="Citizens_ID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Father_Name" Type="nvarchar(max)" />
+    <Property Name="Occupation" Type="nvarchar(max)" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Created_Date" Type="date" />
+    <Property Name="Updated_Date" Type="date" />
+    <Property Name="Citizens_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address_Details_ID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Citizens_Address_Details">
+    <End Role="Address_Details" Type="Self.Address_Details" Multiplicity="0..1" />
+    <End Role="Citizens" Type="Self.Citizens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address_Details">
+        <PropertyRef Name="Address_Details_ID" />
+      </Principal>
+      <Dependent Role="Citizens">
+        <PropertyRef Name="Address_Details_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CitizenShipModelStoreContainer">
+    <EntitySet Name="Address_Details" EntityType="Self.Address_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Citizens" EntityType="Self.Citizens" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Citizens_Address_Details" Association="Self.FK_Citizens_Address_Details">
+      <End Role="Address_Details" EntitySet="Address_Details" />
+      <End Role="Citizens" EntitySet="Citizens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
